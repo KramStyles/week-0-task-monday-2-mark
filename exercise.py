@@ -1,23 +1,29 @@
-def nameValidator(name):
-    """
+from math import sqrt
 
+
+def quadraticSolver(a, b, c):
     """
-    msg = ""
-    if name.count(' ') != 1:
-        msg = "The number of spaces required should just be one"
-    else:
-        first_name = name.split(' ')[0]
-        last_name = name.split(' ')[1]
-        if first_name.isalpha() and last_name.isalpha():
-            if (len(last_name) >= 5 and len(last_name) <= 21) & (len(first_name) >= 5 and len(first_name) <= 21):
-                msg = f"{name} is a valid name!"
-            else:
-                msg = "The length of EACH name must be between 5 and 21 characters!"
+    A simple function that uses the quadratic formula to compute the root of quadratic equations. Zero Division Error is also handled (Brownie expected! :-)
+    param: a, b, c (int | float) - Inputs provided by the user
+    return msg (list) - A list of the roots
+    """
+    try:
+        if a == 0:
+            raise ZeroDivisionError('zero divison error')
         else:
-            msg = "Names must only contain alphabets"
-    return msg
+            root1 = (-b + sqrt((b*b) - (4 * a * c))) / 2*a
+            root2 = (-b - sqrt((b*b) - (4 * a * c))) / 2*a
+            msg = [root1, root2]
+    except Exception as err:
+        msg = f"An Error Occured: {err}".title()
+    finally:
+        return msg
+
+a = 1
+b = -2
+c = -4
+
+print(quadraticSolver(a, b, c))
 
 
-nom = "Sister Margaret"
-print(nameValidator(nom))
 
